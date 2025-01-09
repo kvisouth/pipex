@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nok <nok@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/09 17:13:36 by nok              ###   ########.fr       */
+/*   Updated: 2025/01/09 19:45:52 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,12 @@ typedef struct s_pipex
 {
 	
 }	t_pipex;
+
+int		check_cmd(char *cmd, char **envp);
+char	**concat_cmd_to_dirs(char *cmd, char **dirs);
+char	*get_path(char **envp);
+int		check_file1(char *file);
+
+void	free_tab(char **tab);
 
 #endif
