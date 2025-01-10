@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:19:08 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 12:02:20 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:25:08 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	*ft_strtok(char *str, char *delim);
 
 /* PTR ON FUNCTIONS */
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
