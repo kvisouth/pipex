@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/10 16:34:18 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:43:26 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define UNREADABLE_FILE 0
 # define INEXISTANT_FILE -1
+# define ACCESSIBLE_FILE 1
 
 # include "../libft/libft.h"
 # include <fcntl.h>

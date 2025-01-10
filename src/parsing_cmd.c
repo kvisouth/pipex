@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:27:10 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/10 14:28:19 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:48:25 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 	}
 	return (new_dirs[i] = NULL, free_tab(dirs), new_dirs);
 }
-
 
 /* Checks if "cmd" exists and is executable */
 int	check_cmd_path(char *cmd, char **envp)

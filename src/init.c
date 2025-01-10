@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/10 16:35:06 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:43:50 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init(t_pipex *pipex, char **av, char **envp)
 		pipex->env_i = true;
 	pipex->file1.file = av[1];
 	pipex->file2.file = av[4];
-	if (pipex->file1.access == 1)
+	if (pipex->file1.access == ACCESSIBLE_FILE)
 	{
 		pipex->file1.fd = open(av[1], O_RDONLY);
 		if (pipex->file1.fd == -1)

@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:40:54 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/10 16:33:52 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:43:22 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	parsing(t_pipex *pipex, int ac, char **av)
 	else if (check_file1(av[1]) == UNREADABLE_FILE)
 		pipex->file1.access = UNREADABLE_FILE;
 	else
-		pipex->file1.access = 1;
+		pipex->file1.access = ACCESSIBLE_FILE;
 	return (1);
 }
