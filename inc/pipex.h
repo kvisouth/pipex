@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/09 19:45:52 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:34:55 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ typedef struct s_pipex
 	
 }	t_pipex;
 
-int		check_cmd(char *cmd, char **envp);
+/* Parsing */
+int		parsing(int ac, char **av, char **envp);
+int		is_cmd_absolute(char *cmd);
+int		check_cmd_absolute(char *cmd);
+int		check_cmd_path(char *cmd, char **envp);
 char	**concat_cmd_to_dirs(char *cmd, char **dirs);
 char	*get_path(char **envp);
 int		check_file1(char *file);

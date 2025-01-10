@@ -1,5 +1,6 @@
 SRC		=	src/main.c \
 			src/parsing.c \
+			src/parsing_cmd.c \
 			src/utils.c \
 
 NAME	= pipex

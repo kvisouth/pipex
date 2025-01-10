@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:40:54 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/09 19:43:20 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:28:41 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,60 +42,26 @@ char	*get_path(char **envp)
 	return (NULL);
 }
 
-/* Adds '/' and "cmd" to each "dir" */
-char	**concat_cmd_to_dirs(char *cmd, char **dirs)
+/* Parses "file1", "cmd1", "cmd2", no need to check "file2" */
+int	parsing(int ac, char **av, char **envp)
 {
-	char	**new_dirs;
-	char	*new_dir_slash;
-	char	*new_dir_cmd;
-	int		i;
-
-	i = 0;
-	while (dirs[i])
-		i++;
-	new_dirs = malloc(sizeof(char *) * (i + 1));
-	if (!new_dirs)
-		return (NULL);
-	i = 0;
-	while (dirs[i])
+	if (ac != 5)
+		return (ft_putstr_fd("Error: Wrong number of arguments\n", 2), 0);
+	if (!check_file1(av[1]))
+		return (0);
+	if (is_cmd_absolute(ft_strtok(av[2], " ")))
 	{
-		new_dir_slash = ft_strjoin(dirs[i], "/");
-		if (!new_dir_slash)
-			return (NULL);
-		new_dir_cmd = ft_strjoin(new_dir_slash, cmd);
-		if (!new_dir_cmd)
-			return (NULL);
-		new_dirs[i] = new_dir_cmd;
-		free(new_dir_slash);
-		i++;
+		if (check_cmd_absolute(ft_strtok(av[2], " ")))
+			return (0);
 	}
-	return (new_dirs[i] = NULL, free_tab(dirs), new_dirs);
-}
-
-/* Checks if "cmd" exists and is executable */
-int	check_cmd(char *cmd, char **envp)
-{
-	char	*path;
-	char	**dirs;
-	int		i;
-
-	path = get_path(envp);
-	if (!path)
-		return (ft_putstr_fd("Error: PATH not found\n", 2), 0);
-	dirs = ft_split(path, ':');
-	free(path);
-	if (!dirs)
-		return (ft_putstr_fd("Error: Failed malloc\n", 2), 0);
-	dirs = concat_cmd_to_dirs(cmd, dirs);
-	if (!dirs)
-		return (ft_putstr_fd("Error: Failed malloc\n", 2), free_tab(dirs), 0);
-	i = 0;
-	while (dirs[i])
+	else if (!check_cmd_path(ft_strtok(av[2], " "), envp))
+		return (0);
+	if (is_cmd_absolute(ft_strtok(av[3], " ")))
 	{
-		if (access(dirs[i], F_OK) == 0 && access(dirs[i], X_OK) == 0)
-			return (free_tab(dirs), 1);
-		i++;
+		if (check_cmd_absolute(ft_strtok(av[3], " ")))
+			return (0);
 	}
-	free_tab(dirs);
-	return (ft_putstr_fd("Error: Command not found\n", 2), 0);
+	else if (!check_cmd_path(ft_strtok(av[3], " "), envp))
+		return (0);
+	return (1);
 }
