@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 19:01:20 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/16 17:24:45 by kevso            ###   ########.fr       */
+/*   Created: 2025/01/16 17:24:52 by kevso             #+#    #+#             */
+/*   Updated: 2025/01/16 17:24:57 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	main(int ac, char **av, char **envp)
+/* Frees a tab */
+void	free_tab(char **tab)
 {
-	t_pipex	pipex;
+	int	i;
 
-	if (!parsing(&pipex, ac, av))
-		return (1);
-	if (!init(&pipex, av, envp))
-		return (1);
-	if (!exec(&pipex))
-		return (1);
-	return (0);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

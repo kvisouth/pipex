@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/10 16:43:26 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:23:29 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_pipex
 	char	**env;
 	char	*path;
 	bool	env_i;
+	int		pipefd[2];
+	pid_t	pid1;
+	pid_t	pid2;
 	t_file	file1;
 	t_file	file2;
 	t_cmd	cmd1;
@@ -60,8 +63,11 @@ int		parsing(t_pipex *pipex, int ac, char **av);
 
 /* Init */
 char	*get_path(char **envp);
-int		init_cmd(t_cmd *cmd, char *arg);
+int		init_cmd(t_cmd *cmd, char *arg, char *path);
 int		init(t_pipex *pipex, char **av, char **envp);
+
+/* Exec */
+int		exec(t_pipex *pipex);
 
 void	free_tab(char **tab);
 
