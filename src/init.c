@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/16 15:52:14 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/16 20:42:50 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path)
 /* Initializes the "cmd" structure */
 int	init_cmd(t_cmd *cmd, char *arg, char *path)
 {
-	if (!concat_path_with_cmd(cmd, ft_strdup(arg), path))
+	char	*arg_copy;
+
+	arg_copy = ft_strdup(arg);
+	if (!concat_path_with_cmd(cmd, arg_copy, path))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	cmd->args = ft_split(arg, ' ');
 	if (!cmd->args)
