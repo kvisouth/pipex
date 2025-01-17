@@ -6,12 +6,11 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:01:20 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 16:44:07 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:45:04 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
-
 
 void	clean_struct(t_pipex *pipex)
 {
