@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:01:20 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 02:30:44 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 16:44:07 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-/* Cleans the structure */
+
 void	clean_struct(t_pipex *pipex)
 {
 	free(pipex->cmd1.cmd);
