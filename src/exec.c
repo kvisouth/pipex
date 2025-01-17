@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/16 17:22:46 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 17:28:26 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	execute_cmd(t_pipex *pipex, int command)
 		{
 			execve(pipex->cmd1.cmd, pipex->cmd1.args, pipex->env);
 			perror("Error");
-			exit(EXIT_FAILURE);
 		}
 	}
 	else if (command == 2)
@@ -64,7 +63,6 @@ int	execute_cmd(t_pipex *pipex, int command)
 		{
 			execve(pipex->cmd2.cmd, pipex->cmd2.args, pipex->env);
 			perror("Error");
-			exit(EXIT_FAILURE);
 		}
 	}
 	return (1);

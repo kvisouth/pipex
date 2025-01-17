@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 02:40:03 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 17:19:39 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,20 @@ int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path)
 		}
 		i++;
 	}
-	return (free_tab(dirs), ft_putstr_fd("Error: Command not found\n", 2), 0);
+	free_tab(dirs);
+	cmd->cmd = ft_strdup(cmd_to_concat);
+	if (!cmd->cmd)
+		return (ft_putstr_fd("Error: Failed malloc\n", 2), 0);
+	return (1);
+}
+
+/* Sets the absolute path of the command */
+int	set_absolute_cmd(t_cmd *cmd, char *arg)
+{
+	cmd->cmd = ft_substr(arg, 0, ft_strchr(arg, ' ') - arg);
+	if (!cmd->cmd)
+		return (ft_putstr_fd("Error: Failed malloc\n", 2), 0);
+	return (1);
 }
 
 /* Initializes the "cmd" structure */
@@ -106,7 +119,9 @@ int	init_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex)
 	else
 		pipex->ptr.arg2 = arg_copy;
 	i++;
-	if (!concat_path_with_cmd(cmd, arg_copy, path))
+	if (arg_copy[0] != '/' && !concat_path_with_cmd(cmd, arg_copy, path))
+		return (ft_putstr_fd("malloc error\n", 2), 0);
+	if (arg_copy[0] == '/' && !set_absolute_cmd(cmd, arg_copy))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	cmd->args = ft_split(arg, ' ');
 	if (!cmd->args)
