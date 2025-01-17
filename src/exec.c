@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/17 17:28:26 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:56:03 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	execute_cmd(t_pipex *pipex, int command)
 		if (pipex->pid1 == 0)
 		{
 			execve(pipex->cmd1.cmd, pipex->cmd1.args, pipex->env);
-			perror("Error");
+			ft_putstr_fd("Error: command not found\n", 2);
 		}
 	}
 	else if (command == 2)
@@ -62,7 +62,7 @@ int	execute_cmd(t_pipex *pipex, int command)
 		if (pipex->pid2 == 0)
 		{
 			execve(pipex->cmd2.cmd, pipex->cmd2.args, pipex->env);
-			perror("Error");
+			ft_putstr_fd("Error: command not found\n", 2);
 		}
 	}
 	return (1);
@@ -74,8 +74,11 @@ int	exec(t_pipex *pipex)
 		return (perror("Error"), 0);
 	if (!redirect_file1(*pipex))
 		return (0);
-	if (!execute_cmd(pipex, 1))
-		return (0);
+	if (pipex->file1.access == ACCESSIBLE_FILE)
+	{
+		if (!execute_cmd(pipex, 1))
+			return (0);
+	}
 	if (dup2(pipex->pipefd[0], STDIN_FILENO) == -1)
 		return (perror("Error"), 0);
 	if (!redirect_file2(*pipex))
