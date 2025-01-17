@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/16 17:23:29 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 02:32:03 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_file
 	char	*file;
 }	t_file;
 
+typedef struct s_ptr
+{
+	char	*arg1;
+	char	*arg2;
+	char	**dirs1;
+	char	**dirs2;
+}	t_ptr;
+
 typedef struct s_pipex
 {
 	char	**env;
@@ -51,6 +59,7 @@ typedef struct s_pipex
 	t_file	file2;
 	t_cmd	cmd1;
 	t_cmd	cmd2;
+	t_ptr	ptr;
 }	t_pipex;
 
 /* Parsing */
@@ -63,7 +72,7 @@ int		parsing(t_pipex *pipex, int ac, char **av);
 
 /* Init */
 char	*get_path(char **envp);
-int		init_cmd(t_cmd *cmd, char *arg, char *path);
+int		init_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex);
 int		init(t_pipex *pipex, char **av, char **envp);
 
 /* Exec */

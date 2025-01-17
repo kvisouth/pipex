@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/16 20:42:50 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 02:37:39 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,12 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 }
 
 /* Concatenates the path with the command */
-int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path)
+int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex)
 {
 	char	*cmd_to_concat;
 	char	**dirs;
 	int		i;
 
-	if (!arg)
-		return (ft_putstr_fd("Error: Failed malloc\n", 2), 0);
 	cmd_to_concat = ft_strtok(arg, " ");
 	dirs = ft_split(path, ':');
 	if (!dirs)
@@ -84,28 +82,39 @@ int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path)
 	{
 		if (access(dirs[i], F_OK) == 0 && access(dirs[i], X_OK) == 0)
 		{
-			cmd->cmd = dirs[i];
-			return (1);
+			cmd->cmd = ft_strdup(dirs[i]);
+			if (!cmd->cmd)
+				return (ft_putstr_fd("Error: Failed malloc\n", 2), 0);
+			return (free_tab(dirs), 1);
 		}
 		i++;
 	}
-	free_tab(dirs);
-	return (ft_putstr_fd("Error: Command not found\n", 2), 0);
+	return (free_tab(dirs), ft_putstr_fd("Error: Command not found\n", 2), 0);
 }
 
 /* Initializes the "cmd" structure */
-int	init_cmd(t_cmd *cmd, char *arg, char *path)
+int	init_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex)
 {
-	char	*arg_copy;
+	static int	i = 0;
+	char		*arg_copy;
 
 	arg_copy = ft_strdup(arg);
-	if (!concat_path_with_cmd(cmd, arg_copy, path))
+	if (!arg_copy)
+		return (ft_putstr_fd("malloc error\n", 2), 0);
+	if (i == 0)
+		pipex->ptr.arg1 = arg_copy;
+	else
+		pipex->ptr.arg2 = arg_copy;
+	i++;
+	if (!concat_path_with_cmd(cmd, arg_copy, path, pipex))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	cmd->args = ft_split(arg, ' ');
 	if (!cmd->args)
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	free(cmd->args[0]);
-	cmd->args[0] = cmd->cmd;
+	cmd->args[0] = ft_strdup(cmd->cmd);
+	if (!cmd->args[0])
+		return (ft_putstr_fd("malloc error\n", 2), 0);
 	return (1);
 }
 
@@ -127,9 +136,9 @@ int	init(t_pipex *pipex, char **av, char **envp)
 		if (pipex->file1.fd == -1)
 			return (ft_putstr_fd("Unexpected error\n", 2), 0);
 	}
-	if (!init_cmd(&pipex->cmd1, av[2], pipex->path))
+	if (!init_cmd(&pipex->cmd1, av[2], pipex->path, pipex))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
-	if (!init_cmd(&pipex->cmd2, av[3], pipex->path))
+	if (!init_cmd(&pipex->cmd2, av[3], pipex->path, pipex))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	return (1);
 }
