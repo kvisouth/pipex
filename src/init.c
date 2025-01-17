@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 02:37:39 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/17 02:40:03 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 }
 
 /* Concatenates the path with the command */
-int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex)
+int	concat_path_with_cmd(t_cmd *cmd, char *arg, char *path)
 {
 	char	*cmd_to_concat;
 	char	**dirs;
@@ -106,7 +106,7 @@ int	init_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex)
 	else
 		pipex->ptr.arg2 = arg_copy;
 	i++;
-	if (!concat_path_with_cmd(cmd, arg_copy, path, pipex))
+	if (!concat_path_with_cmd(cmd, arg_copy, path))
 		return (ft_putstr_fd("malloc error\n", 2), 0);
 	cmd->args = ft_split(arg, ' ');
 	if (!cmd->args)
