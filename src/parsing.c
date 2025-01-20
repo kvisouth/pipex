@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:40:54 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/16 14:02:32 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/18 00:36:53 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_file1(char *file)
 		return (perror("Error"), INEXISTANT_FILE);
 	if (access(file, R_OK) == -1)
 		return (perror("Error"), UNREADABLE_FILE);
-	return (1);
+	return (ACCESSIBLE_FILE);
 }
 
 /* Parses "file1" */

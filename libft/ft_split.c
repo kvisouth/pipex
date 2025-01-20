@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 19:57:05 by kevisout          #+#    #+#             */
-/*   Updated: 2024/07/25 22:37:46 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:11:13 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /* En cas d'echec de la part de malloc, cette fonction sera appelee */
-void	free_all(char **tab)
+static void	free_all(char **tab)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 02:32:03 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/20 14:54:11 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@
 # include <sys/wait.h>
 # include <stdbool.h>
 
+/*
+- cmd is dynamically allocated : It's the executable (/bin/ls)
+- args only contains pointers to 'cmd' and his arguments from argv (-l -a ..)
+	args[0] is a pointer to 'cmd'
+	args[1] is a pointer to '-l' (from argv) (using ft_strtok)
+*/
 typedef struct s_cmd
 {
+	bool	is_absolute;
 	char	*cmd;
 	char	**args;
+	pid_t	pid;
 }	t_cmd;
 
 typedef struct s_file
@@ -39,40 +47,21 @@ typedef struct s_file
 	char	*file;
 }	t_file;
 
-typedef struct s_ptr
-{
-	char	*arg1;
-	char	*arg2;
-	char	**dirs1;
-	char	**dirs2;
-}	t_ptr;
-
 typedef struct s_pipex
 {
 	char	**env;
 	char	*path;
-	bool	env_i;
 	int		pipefd[2];
-	pid_t	pid1;
-	pid_t	pid2;
 	t_file	file1;
 	t_file	file2;
 	t_cmd	cmd1;
 	t_cmd	cmd2;
-	t_ptr	ptr;
 }	t_pipex;
 
 /* Parsing */
-int		check_file1(char *file);
 int		parsing(t_pipex *pipex, int ac, char **av);
-// int		is_cmd_absolute(char *cmd);
-// int		check_cmd_absolute(char *cmd);
-// int		check_cmd_path(char *cmd, char **envp);
-// char	**concat_cmd_to_dirs(char *cmd, char **dirs);
 
 /* Init */
-char	*get_path(char **envp);
-int		init_cmd(t_cmd *cmd, char *arg, char *path, t_pipex *pipex);
 int		init(t_pipex *pipex, char **av, char **envp);
 
 /* Exec */

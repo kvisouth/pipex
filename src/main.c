@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:01:20 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/17 18:33:29 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:37:55 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-void	clean_struct(t_pipex *pipex)
+void	free_all(t_pipex *pipex)
 {
-	free(pipex->cmd1.cmd);
-	free(pipex->cmd2.cmd);
+	free(pipex->path);
 	free_tab(pipex->cmd1.args);
 	free_tab(pipex->cmd2.args);
-	free(pipex->ptr.arg1);
-	free(pipex->ptr.arg2);
-	free(pipex->path);
+}
+
+int	exec(t_pipex *pipex)
+{
+	execve(pipex->cmd1.cmd, pipex->cmd1.args, pipex->env);
+	perror("execve");
+	return (0);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -31,8 +34,8 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	if (!init(&pipex, av, envp))
 		return (1);
-	if (!exec(&pipex))
-		return (1);
-	clean_struct(&pipex);
+	// if (!exec(&pipex))
+	// 	return (1);
+	free_all(&pipex);
 	return (0);
 }
