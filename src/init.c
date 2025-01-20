@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/20 22:34:05 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/20 22:44:13 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,6 @@ int	get_args(char **dirs, t_cmd *cmd, char *arg)
 	}
 	if (!cmd->cmd)
 	{
-		printf("dirs[0]: %s\n", dirs[0]);
 		cmd->cmd = ft_strdup(dirs[0]);
 		if (!cmd->cmd)
 			return (0);
@@ -212,7 +211,6 @@ int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 	}
 	else
 	{
-		printf("arg: %s\n", arg);
 		cmd->args = ft_split(arg, ' ');
 		if (!cmd->args)
 			return (0);
