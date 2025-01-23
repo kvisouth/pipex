@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nok <nok@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/21 00:27:33 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/23 14:17:43 by nok              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_cmd
 	bool	is_absolute;
 	char	*cmd;
 	char	**args;
+	pid_t	pid;
 }	t_cmd;
 
 typedef struct s_file
@@ -51,8 +52,6 @@ typedef struct s_pipex
 	char	**env;
 	char	*path;
 	int		pipefd[2];
-	pid_t	pid1;
-	pid_t	pid2;
 	t_file	file1;
 	t_file	file2;
 	t_cmd	cmd1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nok <nok@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/21 00:28:34 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/23 15:05:28 by nok              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	init_struct_vars(t_pipex *pipex, char **av, char **envp)
 	get_path(envp, pipex);
 	pipex->file1.file = av[1];
 	pipex->file2.file = av[4];
-	pipex->pid1 = 0;
-	pipex->pid2 = 0;
+	pipex->cmd1.pid = 0;
+	pipex->cmd2.pid = 0;
 	return (1);
 }
 
@@ -179,7 +179,6 @@ int	get_args(char **dirs, t_cmd *cmd, char *arg)
 		i++;
 	}
 	cmd->args[i] = NULL;
-	// printf("cmd.cmd: %s\n", cmd->cmd); // DEBUG
 	return (1);
 }
 
@@ -214,6 +213,9 @@ int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 	}
 	else
 	{
+		cmd->cmd = ft_substr(arg, 0, ft_strchr(arg, ' ') - arg);
+		if (!cmd->cmd)
+			return (0);
 		cmd->args = ft_split(arg, ' ');
 		if (!cmd->args)
 			return (0);
