@@ -1,6 +1,8 @@
 SRC		=	src/main.c \
 			src/parsing.c \
 			src/init.c \
+			src/init_args.c \
+			src/init_utils.c \
 			src/utils.c \
 			src/exec.c \
 
