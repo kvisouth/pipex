@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:10:02 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 16:15:15 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:25:56 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 {
 	set_absolute_var(cmd, arg);
-	if (cmd->is_absolute == false)
+	if (cmd->is_absolute == false && path)
 	{
 		if (!init_args(cmd, arg, path))
 			return (0);

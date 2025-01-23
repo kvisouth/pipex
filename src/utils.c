@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nok <nok@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:24:52 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/23 15:34:16 by nok              ###   ########.fr       */
+/*   Updated: 2025/01/23 17:30:50 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /* Frees all allocated memory */
 void	free_all(t_pipex *pipex)
 {
-	free(pipex->path);
+	if (pipex->no_env == false)
+		free(pipex->path);
 	free_tab(pipex->cmd1.args);
 	free_tab(pipex->cmd2.args);
 	if (pipex->cmd1.is_absolute)

@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 16:14:42 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:05:23 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_pipex
 {
 	char	**env;
 	char	*path;
+	bool	no_env;
 	int		pipefd[2];
 	t_file	file1;
 	t_file	file2;
