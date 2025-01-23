@@ -6,7 +6,7 @@
 /*   By: nok <nok@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 14:17:43 by nok              ###   ########.fr       */
+/*   Updated: 2025/01/23 15:33:29 by nok              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int		init(t_pipex *pipex, char **av, char **envp);
 int		exec(t_pipex *pipex);
 
 void	free_tab(char **tab);
+void	free_all(t_pipex *pipex);
 
 #endif
