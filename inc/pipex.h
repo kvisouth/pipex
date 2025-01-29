@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/29 03:35:44 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/29 04:23:29 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_pipex
 	bool	no_env;
 	int		pipefd[2];
 	pid_t	pid;
+	pid_t	pid2;
 	t_file	file1;
 	t_file	file2;
 	t_cmd	cmd1;
