@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 17:05:23 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/29 03:35:44 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_cmd
 	bool	is_absolute;
 	char	*cmd;
 	char	**args;
-	pid_t	pid;
 }	t_cmd;
 
 typedef struct s_file
@@ -53,6 +52,7 @@ typedef struct s_pipex
 	char	*path;
 	bool	no_env;
 	int		pipefd[2];
+	pid_t	pid;
 	t_file	file1;
 	t_file	file2;
 	t_cmd	cmd1;

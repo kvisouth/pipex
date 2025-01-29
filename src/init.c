@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 17:27:21 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/29 03:36:02 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	init_struct_vars(t_pipex *pipex, char **av, char **envp)
 		pipex->no_env = false;
 	pipex->file1.file = av[1];
 	pipex->file2.file = av[4];
-	pipex->cmd1.pid = 0;
-	pipex->cmd2.pid = 0;
 	return (1);
 }
 
