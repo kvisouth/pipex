@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/29 04:23:29 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 03:02:22 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-
-# define UNREADABLE_FILE 0
-# define INEXISTANT_FILE -1
-# define ACCESSIBLE_FILE 1
 
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -26,12 +22,6 @@
 # include <sys/wait.h>
 # include <stdbool.h>
 
-/*
-- cmd is dynamically allocated : It's the executable (/bin/ls)
-- args only contains pointers to 'cmd' and his arguments from argv (-l -a ..)
-	args[0] is a pointer to 'cmd'
-	args[1] is a pointer to '-l' (from argv) (using ft_strtok)
-*/
 typedef struct s_cmd
 {
 	bool	is_absolute;
@@ -41,7 +31,6 @@ typedef struct s_cmd
 
 typedef struct s_file
 {
-	int		access;
 	int		fd;
 	char	*file;
 }	t_file;
@@ -60,9 +49,6 @@ typedef struct s_pipex
 	t_cmd	cmd2;
 }	t_pipex;
 
-/* Parsing */
-int		parsing(t_pipex *pipex, int ac, char **av);
-
 /* Init */
 int		count_args(char *arg);
 char	**concat_cmd_to_dirs(char *cmd, char **dirs);
@@ -74,6 +60,7 @@ int		init(t_pipex *pipex, char **av, char **envp);
 /* Exec */
 int		exec(t_pipex *pipex);
 
+/* Utils */
 void	free_tab(char **tab);
 void	free_all(t_pipex *pipex);
 
