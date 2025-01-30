@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:08:12 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/30 02:53:14 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 03:03:47 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_args_loop_2(t_cmd *cmd, char *arg)
 	return (1);
 }
 
-/* Fills cmd->cmd in loop1, then if it failed, just strdup() the first directory */
+/* Fills cmd->cmd in loop1, then if failed, just strdup() the first directory */
 /* Then fills cmd->args from args[1] to args[n] in loop2 */
 int	get_args(char **dirs, t_cmd *cmd, char *arg)
 {
