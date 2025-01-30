@@ -6,14 +6,14 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:10:02 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/30 15:11:08 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:37:40 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
 /* Sets the is_a_path variable in cmd */
-void	set_absolute_var(t_cmd *cmd, char *arg)
+void	set_is_a_path_var(t_cmd *cmd, char *arg)
 {
 	if (arg[0] == '/' || arg[0] == '.')
 		cmd->is_a_path = true;
@@ -101,7 +101,7 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 /* Initializes the cmd struct */
 int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 {
-	set_absolute_var(cmd, arg);
+	set_is_a_path_var(cmd, arg);
 	if (cmd->is_a_path == false && path)
 	{
 		if (!init_args(cmd, arg, path))
