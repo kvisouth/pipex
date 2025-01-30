@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:24:52 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/30 02:43:37 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:10:57 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	free_all(t_pipex *pipex)
 		free(pipex->path);
 	free_tab(pipex->cmd1.args);
 	free_tab(pipex->cmd2.args);
-	if (pipex->cmd1.is_absolute)
+	if (pipex->cmd1.is_a_path)
 		free(pipex->cmd1.cmd);
-	if (pipex->cmd2.is_absolute)
+	if (pipex->cmd2.is_a_path)
 		free(pipex->cmd2.cmd);
 }
 

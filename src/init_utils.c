@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:10:02 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 17:25:56 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:11:08 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-/* Sets the is_absolute variable in cmd */
+/* Sets the is_a_path variable in cmd */
 void	set_absolute_var(t_cmd *cmd, char *arg)
 {
-	if (arg[0] == '/')
-		cmd->is_absolute = true;
+	if (arg[0] == '/' || arg[0] == '.')
+		cmd->is_a_path = true;
 	else
-		cmd->is_absolute = false;
+		cmd->is_a_path = false;
 }
 
 /* Counts the number of arguments in arg (ls -l -r -> 3) */
@@ -102,7 +102,7 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 {
 	set_absolute_var(cmd, arg);
-	if (cmd->is_absolute == false && path)
+	if (cmd->is_a_path == false && path)
 	{
 		if (!init_args(cmd, arg, path))
 			return (0);

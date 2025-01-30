@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:56:19 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/30 03:02:22 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 15:10:57 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_cmd
 {
-	bool	is_absolute;
+	bool	is_a_path;
 	char	*cmd;
 	char	**args;
 }	t_cmd;
