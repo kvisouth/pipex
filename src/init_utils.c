@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:10:02 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/30 15:37:40 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 19:44:59 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,13 @@ char	**concat_cmd_to_dirs(char *cmd, char **dirs)
 	return (free(dirs), free(command), new_dirs);
 }
 
-/* Initializes the cmd struct */
+/*
+Initializes the cmd struct
+If the command is NOT a path (ls, echo, etc) and pipex is launched with envp
+	-> We have to search and concat the path to the command
+Else
+	-> We just have to take the command as the argument and split it.
+*/
 int	init_cmd_struct(t_cmd *cmd, char *arg, char *path)
 {
 	set_is_a_path_var(cmd, arg);
