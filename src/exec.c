@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/29 05:03:25 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:33:18 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ void	child_cmd1(t_pipex *pipex)
 
 void	child_cmd2(t_pipex *pipex)
 {
-	pipex->file2.fd = open(pipex->file2.file,
-			O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (pipex->file2.fd == -1)
-	{
-		close_pipes_and_fd(pipex->pipefd, -1);
-		free_and_exit(pipex, 1);
-	}
 	pipex->pid2 = fork();
 	if (pipex->pid2 == -1)
 	{
@@ -67,13 +60,20 @@ void	child_cmd2(t_pipex *pipex)
 	}
 	if (pipex->pid2 == 0)
 	{
+		pipex->file2.fd = open(pipex->file2.file,
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (pipex->file2.fd == -1)
+		{
+			close_pipes_and_fd(pipex->pipefd, -1);
+			free_and_exit(pipex, 1);
+		}
 		dup2(pipex->pipefd[0], STDIN_FILENO);
 		dup2(pipex->file2.fd, STDOUT_FILENO);
 		close_pipes_and_fd(pipex->pipefd, pipex->file2.fd);
 		if (execve(pipex->cmd2.cmd, pipex->cmd2.args, pipex->env) == -1)
 		{
 			ft_putstr_fd("Error: command not found\n", STDERR_FILENO);
-			free_and_exit(pipex, 127);	
+			free_and_exit(pipex, 127);
 		}
 	}
 	close_pipes_and_fd(pipex->pipefd, pipex->file2.fd);
