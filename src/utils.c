@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:24:52 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/23 17:30:50 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:43:37 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_all(t_pipex *pipex)
 		free(pipex->cmd2.cmd);
 }
 
-/* Frees a tab */
+/* Frees a tab (**char) */
 void	free_tab(char **tab)
 {
 	int	i;

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:08:12 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/23 16:09:24 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:53:14 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
+/* strdup() the first valid directory into cmd->cmd */
 int	get_args_loop_1(char **dirs, t_cmd *cmd)
 {
 	int	i;
@@ -31,6 +32,7 @@ int	get_args_loop_1(char **dirs, t_cmd *cmd)
 	return (1);
 }
 
+/* strdup() the arguments of a command into cmd->args[1] to the last one */
 int	get_args_loop_2(t_cmd *cmd, char *arg)
 {
 	char	*token;
@@ -51,7 +53,8 @@ int	get_args_loop_2(t_cmd *cmd, char *arg)
 	return (1);
 }
 
-/* Initializes cmd->args */
+/* Fills cmd->cmd in loop1, then if it failed, just strdup() the first directory */
+/* Then fills cmd->args from args[1] to args[n] in loop2 */
 int	get_args(char **dirs, t_cmd *cmd, char *arg)
 {
 	cmd->cmd = NULL;
@@ -73,7 +76,7 @@ int	get_args(char **dirs, t_cmd *cmd, char *arg)
 	return (1);
 }
 
-/* Initializes cmd->args */
+/* Splits PATH= into multiple directories and concatenates "/cmd" to it */
 int	init_args(t_cmd *cmd, char *arg, char *path)
 {
 	char	**dirs;

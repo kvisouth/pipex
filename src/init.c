@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:31:48 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/29 03:36:02 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:45:05 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_path(char **envp, t_pipex *pipex)
 	return (-1);
 }
 
-/* Initializes variables of the structure */
+/* Initializes variables of the structure : env, path, no_env, file1, file2.*/
 int	init_struct_vars(t_pipex *pipex, char **av, char **envp)
 {
 	pipex->env = envp;
@@ -48,6 +48,7 @@ int	init_struct_vars(t_pipex *pipex, char **av, char **envp)
 	return (1);
 }
 
+/* Initializes the strucutres : t_pipex and t_cmd */
 int	init(t_pipex *pipex, char **av, char **envp)
 {
 	if (!init_struct_vars(pipex, av, envp))

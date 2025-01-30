@@ -6,12 +6,13 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/30 02:33:18 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/30 02:47:37 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
+/* Closes fd of the pipe and the file (-1 if no files)*/
 void	close_pipes_and_fd(int *pipefd, int fd)
 {
 	close(pipefd[0]);
@@ -19,12 +20,14 @@ void	close_pipes_and_fd(int *pipefd, int fd)
 	close(fd);
 }
 
+/* Frees all allocated memory and exits with given code */
 void	free_and_exit(t_pipex *pipex, int code)
 {
 	free_all(pipex);
 	exit(code);
 }
 
+/* Create a child process, redirects STDIN and STDOUT and executes */
 void	child_cmd1(t_pipex *pipex)
 {
 	pipex->pid = fork();
@@ -50,6 +53,7 @@ void	child_cmd1(t_pipex *pipex)
 	}
 }
 
+/* Create a child process, redirects STDIN and STDOUT and executes */
 void	child_cmd2(t_pipex *pipex)
 {
 	pipex->pid2 = fork();
@@ -79,6 +83,7 @@ void	child_cmd2(t_pipex *pipex)
 	close_pipes_and_fd(pipex->pipefd, pipex->file2.fd);
 }
 
+/* Create a pipe, execute command 1 and 2 simultaneously */
 int	exec(t_pipex *pipex)
 {
 	if (pipe(pipex->pipefd) == -1)
