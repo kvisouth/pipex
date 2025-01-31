@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/30 03:03:22 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/31 08:07:30 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	child_cmd2(t_pipex *pipex)
 			free_and_exit(pipex, 127);
 		}
 	}
-	close_pipes_and_fd(pipex->pipefd, pipex->file2.fd);
+	close_pipes_and_fd(pipex->pipefd, 0);
 }
 
 /* Create a pipe, execute command 1 and 2 simultaneously */
