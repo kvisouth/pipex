@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:08:12 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/30 03:03:47 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/31 01:55:48 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int	get_args(char **dirs, t_cmd *cmd, char *arg)
 	{
 		cmd->cmd = ft_strdup(dirs[0]);
 		if (!cmd->cmd)
+		{
+			free_tab(dirs);
 			return (0);
+		}
 	}
 	free_tab(dirs);
 	cmd->args[0] = cmd->cmd;
