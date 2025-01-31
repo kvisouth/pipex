@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:21:14 by kevso             #+#    #+#             */
-/*   Updated: 2025/01/31 08:16:59 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/31 08:28:38 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	child_cmd1(t_pipex *pipex)
 	pipex->pid = fork();
 	if (pipex->pid == -1)
 	{
-		close(pipex->pipefd[0]);
-		close(pipex->pipefd[1]);
+		close_pipes_and_fd(pipex->pipefd, 0);
 		free_and_exit(pipex, 1);
 	}
 	if (pipex->pid == 0)
@@ -62,7 +61,7 @@ void	child_cmd2(t_pipex *pipex)
 	pipex->pid2 = fork();
 	if (pipex->pid2 == -1)
 	{
-		close_pipes_and_fd(pipex->pipefd, pipex->file2.fd);
+		close_pipes_and_fd(pipex->pipefd, 0);
 		free_and_exit(pipex, 1);
 	}
 	if (pipex->pid2 == 0)
